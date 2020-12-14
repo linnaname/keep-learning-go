@@ -4,3 +4,7 @@
 unsafe 包提供了 2 点重要的能力：
 任何类型的指针和 unsafe.Pointer 可以相互转换。
 uintptr 类型和 unsafe.Pointer 可以相互转换。
+
+主要是Sizeof（结构体大小）、Offsetof偏移量、Alignof对齐信息
+
+功能相对于Java的unsafe包少很多，Golang的源码中很多地方都用到
