@@ -13,6 +13,7 @@ func main() {
 	fmt.Println("goroot:", runtime.GOROOT())
 	fmt.Println("GOOS:", runtime.GOOS)
 	fmt.Println("NumGoroutine:", runtime.NumGoroutine())
+	fmt.Println("version:", runtime.Version())
 
 	go say("world")
 	say("hello")
