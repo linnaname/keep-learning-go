@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"strings"
 	"unicode"
@@ -67,4 +68,55 @@ func main() {
 	fmt.Println("==========================")
 	sl := []string{"aaa", "b"}
 	fmt.Println(strings.Join(sl, ","))
+
+	s1 := "Go编程"
+
+	fmt.Println(len(s1))
+	fmt.Println(len(string(rune('编'))))
+	fmt.Println(len([]rune(s1)))
+}
+
+func StringPlus(p []string) string {
+	var s string
+	l := len(p)
+	for i := 0; i < l; i++ {
+		s += p[i]
+	}
+	return s
+}
+
+func StringFmt(p []interface{}) string {
+	return fmt.Sprint(p...)
+}
+
+func StringJoin(p []string) string {
+	return strings.Join(p, "")
+}
+
+func StringBuffer(p []string) string {
+	var b bytes.Buffer
+	l := len(p)
+	for i := 0; i < l; i++ {
+		b.WriteString(p[i])
+	}
+	return b.String()
+}
+
+func StringBuilder(p []string) string {
+	var b strings.Builder
+	l := len(p)
+	for i := 0; i < l; i++ {
+		b.WriteString(p[i])
+	}
+	return b.String()
+}
+
+func StringBuilderGrowFirst(p []string, cap int) string {
+	var b strings.Builder
+	l := len(p)
+	b.Grow(cap)
+	for i := 0; i < l; i++ {
+		b.WriteString(p[i])
+	}
+	return b.String()
 }
