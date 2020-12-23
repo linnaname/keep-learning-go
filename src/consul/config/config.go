@@ -1,18 +1,22 @@
-package main
+package config
 
 import (
+	"errors"
 	"github.com/spf13/viper"
-	"os"
 )
 
-func NewConfig(conf string) (*viper.Viper, error) {
+func NewConfig(conf string, configName string) (*viper.Viper, error) {
+	if len(configName) == 0 || len(conf) == 0 {
+		return nil, errors.New("illegal argument")
+	}
+
 	config := viper.New()
-	fp, err := os.Open(conf)
+	config.SetConfigType("json")
+	config.SetConfigName(configName)
+	config.AddConfigPath(conf)
+	err := config.ReadInConfig()
 	if err != nil {
 		return nil, err
 	}
-	if err := config.ReadConfig(fp); err != nil {
-		return nil, err
-	}
-	return config, nil
+	return config, err
 }
