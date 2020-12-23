@@ -35,10 +35,26 @@ type RedisConfig struct {
 }
 
 func main() {
+	testJSON()
+}
+
+func testJSON() {
+	config := viper.New()
+	config.SetConfigType("json")
+	//configname必须和文件前缀相同
+	config.SetConfigName("config")
+	config.AddConfigPath("./config")
+	err := config.ReadInConfig()
+	if err != nil {
+		panic(err)
+	}
+}
+
+func testTOML() {
 	viper.SetConfigName("test")
 	viper.SetConfigType("toml") // REQUIRED if the config file does not have the extension in the name
 	//可以设置多个，viper 会根据设置顺序依次查找；
-	viper.AddConfigPath(".")
+	viper.AddConfigPath("./config")
 	viper.SetDefault("redis.port", 6381)
 	err := viper.ReadInConfig()
 	if err != nil {
@@ -90,5 +106,4 @@ func main() {
 	fmt.Println("redis port before sleep: ", viper.Get("redis.port"))
 	time.Sleep(time.Second * 30)
 	fmt.Println("redis port after sleep: ", viper.Get("redis.port"))
-
 }
