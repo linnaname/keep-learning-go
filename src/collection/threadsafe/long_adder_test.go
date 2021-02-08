@@ -1,6 +1,7 @@
 package threadsafe
 
 import (
+	"fmt"
 	"sync"
 	"testing"
 )
@@ -24,4 +25,8 @@ func TestLongAdder_Sum(t *testing.T) {
 	if adder.Sum() != tmp || adder.SumThenReset() != tmp || adder.Sum() != 0 {
 		t.Errorf("LongAdder logic is wrong")
 	}
+}
+
+func Test(t *testing.T) {
+	fmt.Println("test")
 }
