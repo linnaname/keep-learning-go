@@ -35,7 +35,7 @@ type RedisConfig struct {
 }
 
 func main() {
-	testJSON()
+	testTOML()
 }
 
 func testJSON() {
